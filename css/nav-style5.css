@@ -1,0 +1,46 @@
+/* Nav styles */
+
+#header {padding: 35px 0;position: fixed;top: 0;width: 100%;z-index:100;transition: all 0.5s ease 0s;-webkit-transition: all 0.5s ease 0s;-moz-transition: all 0.5s ease 0s;-o-transition: all 0.5s ease 0s;-ms-transition: all 0.5s ease 0s;}
+.header-inner {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: 90%;
+}
+.nav-logo {background: url("../img/brand_name.png") no-repeat scroll 0 0 transparent;height: 17px;margin-top: 5px;width: 172px;float: left;}
+#header .navicon {background: url("../img/navicon-icon.png") no-repeat scroll 0 -28px transparent;height: 27px;width: 36px;cursor: pointer;float: right;}
+#header.scrolled {background:#333; padding:20px 0 !important;}
+#header.scrolled .logo {margin-top:4px;}
+
+.nav-handle {
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px 20px 10px;
+    position: absolute;
+    right: 0;
+    top: -10px;
+    transition: all 0.4s ease 0s;
+	-webkit-transition: all 0.4s ease 0s;
+	-moz-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+}
+.nav-handle.active {color: #fff;background: #333;}
+nav#n5 {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 43px;
+    width: 81px;
+    z-index: 3;
+}
+nav#n5 ul {list-style: none;padding: 0 0 0 15px;margin: 0;text-align:center;}
+nav#n5 a {color: #fff;font-size: 18px;margin: 0 0 1px 0;font-weight: 300;display: block;background: #333;padding: 15px 19px;
+    -o-transition: .4s;
+    -ms-transition: .4s;
+    -moz-transition: .4s;
+    -webkit-transition: .4s;
+    transition: .4s;
+    outline: none!important;
+}
+nav#n5 a:hover, nav#n5 a:focus, nav#n5 a:active {color: #fff;background: orange;text-decoration: none;}
