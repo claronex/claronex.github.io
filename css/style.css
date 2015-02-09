@@ -2832,7 +2832,7 @@ textarea {
 
 #footer {
 	background-color: #252525;
-	padding:80px 0 0 0;
+	padding:10px 0 0 0;
 	color:#666;
 	position:relative;
 	display:block;
@@ -2846,7 +2846,7 @@ textarea {
 #footer p span{color: #999;}
 #footer h2, #footer h3, #footer h4 {
     
-    margin-bottom: 22px;
+    margin-bottom: 10px;
 }
 #footer .fabout {
     padding-right: 40px;

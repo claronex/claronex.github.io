@@ -109,9 +109,9 @@ $(document).ready(function() {
 			================================================= */		
 	var ut_word_rotator2 = function() {
 		var ut_rotator_words2 = [
-			'Lorem ipsum dolor sit amet consetetur',
-			'Praesent faucibus nisl sit amet nulla seds',
-			'Aenean in magna aliquet maecenas urna placerat'
+			'Start-ups get to market',
+			'Existing businesses grow rapidly',
+			'Non-British companies launch in the UK'
 		] ,
 		counter = 0;                
 		setInterval(function() {
