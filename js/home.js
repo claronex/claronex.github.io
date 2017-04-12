@@ -28,7 +28,7 @@ $(document).ready(function(){
 		};
 		return false;
 	});
-});*/
+});
 
 $(window).resize(function(){
 	setHeight();
@@ -40,11 +40,11 @@ $(window).load(function() {
 		mode:'horizontal',
 		pagination: '.pagination',
 	    loop:true,
-	 /*   speed:800,*/
+	    speed:800,
 	    useCSS3Transforms:true,
-	    grabCursor: true,*/
+	    grabCursor: true,
 	    paginationClickable: true,
-	   /* autoplay: 10000*/
+	    autoplay: 10000
 	});
 	
 });
