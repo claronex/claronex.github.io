@@ -35,14 +35,14 @@ $(window).resize(function(){
 	setWidth();
 });
 
-/**$(window).load(function() {		
+$(window).load(function() {		
 	var mySwiper = $('.swiper-container').swiper({
 		mode:'horizontal',
 		pagination: '.pagination',
 	    loop:true,
 	 /*   speed:800,*/
-	/*    useCSS3Transforms:true,
-	/*    grabCursor: true,
+	    useCSS3Transforms:true,
+	/*    grabCursor: true,*/
 	    paginationClickable: true,
 	   /* autoplay: 10000*/
 	});
