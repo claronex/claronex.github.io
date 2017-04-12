@@ -39,11 +39,11 @@ $(window).load(function() {
 	var mySwiper = $('.swiper-container').swiper({
 		mode:'horizontal',
 		pagination: '.pagination',
-	    loop:false,
+	    loop:true,
 	 /*   speed:800,*/
 	    useCSS3Transforms:true,
-	    grabCursor: false,
-	    paginationClickable: false,
+	    grabCursor: true,
+	    paginationClickable: true,
 	   /* autoplay: 10000*/
 	});
 	
