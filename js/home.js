@@ -44,7 +44,7 @@ $(window).load(function() {
 	    useCSS3Transforms:true,
 	    grabCursor: true,
 	    paginationClickable: true,
-	    autoplay: 10000
+	   /* autoplay: 10000*/
 	});
 	
 });
