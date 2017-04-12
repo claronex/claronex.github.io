@@ -368,8 +368,8 @@ h2 small {font-size: 42px;}
     margin: 0 auto;
     width: 25px;
 }
-.swiper-slide {
-    cursor: grab;
+/*.swiper-slide {
+    cursor: grab;*/
 }
 .swiper-slide .slider-teaser {
     left: 50%;
