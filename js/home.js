@@ -3,7 +3,7 @@ $(document).ready(function(){
 	de = document.documentElement;
 	setHeight();
 	setWidth();	
-/*	$('.arrow-left').on('click', function(e){
+	$('.arrow-left').on('click', function(e){
     	e.preventDefault();
     		var swiper = $(this).siblings('.swiper-container').data('swiper');
     			swiper.swipePrev();
@@ -42,7 +42,7 @@ $(window).load(function() {
 	    loop:true,
 	 /*   speed:800,*/
 	    useCSS3Transforms:true,
-	/*    grabCursor: true,*/
+	    grabCursor: true,*/
 	    paginationClickable: true,
 	   /* autoplay: 10000*/
 	});
