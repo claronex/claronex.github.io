@@ -37,14 +37,14 @@ $(window).resize(function(){
 
 $(window).load(function() {		
 	var mySwiper = $('.swiper-container').swiper({
-		mode:'horizontal',
+	/*	mode:'horizontal',
 		pagination: '.pagination',
-	    loop:true,
-	    speed:800,
+	    loop:false,
+	    speed:800,		
 	    useCSS3Transforms:true,
-	    grabCursor: true,
-	    paginationClickable: true,
-	    autoplay: 10000
+	    grabCursor: true, 
+	   paginationClickable: true, 
+	   autoplay: 10000	*/
 	});
 	
 });
