@@ -158,6 +158,14 @@ h2 {font-size: 42px;	letter-spacing: -3px;}
 h2 small {font-size: 42px;}
 }
 
+/*brand image in slider*/
+
+@media (min-width:1200px){
+.image
+	{
+		width: 650px;
+	}
+	}
 
 /* ==== 3) Preloader ==== */
 #nprogress{pointer-events:none;-webkit-pointer-events:none}
