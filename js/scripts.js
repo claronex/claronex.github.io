@@ -1,373 +1,190 @@
-(function ($) {
+jQuery(function ($) {
 
-'use strict';
+    'use strict';
 
-var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-var windowHeight = jQuery(window).height();	
-var windowWidth = jQuery(window).width();
-var mobileTest;
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        mobileTest = true;
-        $("html").addClass("mobile");
-    }
-    else {
-        mobileTest = false;
-        $("html").addClass("no-mobile");
-    }
-$(document).ready(function() {
-	/* ==============================================
-	WOW plugin triggers animation.css on scroll
-	=============================================== */
-	
-	var wow = new WOW(
-	  {
-		boxClass:     'wow',      // animated element css class (default is wow)
-		animateClass: 'animated', // animation css class (default is animated)
-		offset:       150,          // distance to the element when triggering the animation (default is 0)
-		mobile:       false        // trigger animations on mobile devices (true is default)
-	  }
-	);
-	wow.init();
-	
-	/* ==============================================
-	Skill Bars
-	=============================================== */
-
-	$('.skills-col').waypoint(function() {
-	   jQuery('.skillbar').each(function(){
-			jQuery(this).find('.skillbar-bar').animate({
-				width:jQuery(this).attr('data-percent')
-			},2000);
-		});
-		
-		}, { offset: '100%' 
-	});
-	
-	/* ==============================================
-	Parallax
-	=============================================== */
-	$(window).stellar({ 
-          horizontalScrolling: false,
-		  verticalOffset: 150,
-          responsive: true,		  
-        parallaxElements: true,
-        hideDistantElements: true
-	  });  
-	  
-	  // Sections backgrounds
-    
-    var pageSection = $(".page-section");
-    pageSection.each(function(indx){
-        
-        if ($(this).attr("data-background")){
-            $(this).css("background-image", "url(" + $(this).data("background") + ")");
-        }
-    });
-	
-	// Fullwidth slider
-	$(".fullwidth-slider").owlCarousel({
-		//transitionStyle: "backSlide",
-		slideSpeed: 350,
-		singleItem: true,
-		autoHeight: true,
-		navigation: true,
-		navigationText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
-	});	
-	
-
-	
-	init_services();
-	service_height_init();
-	$(window).resize(function(){
-        
-        service_height_init();
-        
-    });
-	/* ==============================================
-	Testimonial Slider
-	=============================================== */
-	$("#testimonials-slider").owlCarousel({
-       slideSpeed: 350,
-		singleItem: true,
-		autoHeight: true,
-		navigation: false
-		
-    });
-
-	/* ==============================================
-	clients Slider
-	=============================================== */
-	$("#clients").owlCarousel({
-        navigation: false,
-        pagination: false,
-		autoPlay:5000,
-        items: 5,
-        navigationText: false
-    });
-	
-	/* Banner text rotator
-			================================================= */		
-	var ut_word_rotator2 = function() {
-		var ut_rotator_words2 = [
-			'Start-ups get to market',
-			'Existing businesses grow rapidly',
-			'Non-British companies launch in the UK'
-		] ,
-		counter = 0;                
-		setInterval(function() {
-		$(".banner-text-rotator2").fadeOut(function(){$(this).html(ut_rotator_words2[counter=(counter+1)%ut_rotator_words2.length]).fadeIn();});}, 4000 );
-	}
-	ut_word_rotator2();
-			
-	/* ==============================================
-	Contact Form
-	=============================================== */
-	$('#contactform').submit(function(){
-		var action = $(this).attr('action');
-		$("#message").slideUp(750,function() {
-		$('#message').hide();
- 		$('#submit')
-			.after('<img src="img/ajax-loader.gif" class="loader" />')
-			.attr('disabled','disabled');
-		$.post(action, {
-			name: $('#name').val(),
-			email: $('#email').val(),
-			phone: $('#phone').val(),
-			comments: $('#comments').val(),
-		},
-			function(data){
-				if(data.match('success') != null) document.getElementById('message').innerHTML = "<p class='lead'><strong>Thank you.</strong><br>We have received your message and will be in touch with you shortly.</p>";
-				$('#message').slideDown('slow');
-				$('#contactform img.loader').fadeOut('slow',function(){$(this).remove()});
-				$('#submit').removeAttr('disabled');
-				if(data.match('success') != null) $('#contactform').slideUp('slow');
-			}
-		);
-		});
-		return false;
-	});
-	
-	/*=================================================================
-		Number counter
-	===================================================================*/
-	
-	$('#facts').waypoint(function(){
-		$('.increment').counterUp({
-			delay: 10,
-			time: 1000
-		});
-	}, {
-		offset: function() {
-		return $(window).height() - 300;
-		},
-		triggerOnce: true 
-	});
-	
-	/* ==============================================
-	Back to Top
-	=============================================== */
-	$('.scroll-top').click(function() {
-		  $('html, body').animate({ scrollTop:0 }, '1000');
-		  return false;
-	});
-	
-	/*=================================================================
-		About us block hover effect
-	===================================================================*/
-	$(".grid article").mouseover(function(){return $(this).addClass("lasthover"),$(this).siblings().removeClass("lasthover")})
-	
-
-	/* ==============================================
-	fancybox for media i.e. video 
-	=============================================== */
-	$('.fancybox-media').fancybox({
-		padding:"0px",
-		openEffect  : 'none',
-		closeEffect : 'none',
-		helpers : {
-			media : {}
-		}
-	});
-	
-	/* ==============================================
-	fancybox for image gallery
-	=============================================== */
-	$(".fancybox").fancybox({
-		openEffect	: 'none',
-		closeEffect	: 'none'
-	});
-
-	$(".teampopup").fancybox({
-		maxWidth	: 800,
-		maxHeight	: 400,
-		fitToView	: false,
-		width		: '60%',
-		autoSize	: false,
-		closeClick	: false,
-		openEffect	: 'elastic',
-		closeEffect	: 'elastic',
-		padding:0
-	});
-	/*=================================================================
-		placeholder support for IE9
-	===================================================================*/
-	$('input, textarea').placeholder();
-	
-});	
-	
-/* ==============================================
-	window on load function
-=============================================== */
-jQuery(window).load(function() {
-
-	/*=================================================================
-	Smooth scroll for menu links
-	===================================================================*/       
-	jQuery('.arrow-block a[href^="#"],.section-scroll a[href^="#"],.slider-teaser a[href^="#"],.footer-menu a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
-    jQuery('html,body').animate({scrollTop:jQuery(this.hash).offset().top-40}, 1200);
-
-	});
-	
-	
-	/*=================================================================
-	TwitterFeed
-	===================================================================*/ 
-		
-	$('#twitter-box').tweet({
-		modpath: 'js/twitter/',
-		list_id: 'twitter-box',
-		count: 4,
-		avatar_size: 0,
-		loading_text: 'loading twitter feed',
-		username:'contact20twelve'
-	});
-	
-	/*=================================================================
-	twitter slider
-	===================================================================*/ 
-	
-	$("#tweet-slider").owlCarousel({
-		navigation: true,
-		pagination: false,
-		items: 1,
-		navigationText: false,
-		autoPlay:3000,
-		itemsDesktop : [1000,1], //5 items between 1000px and 901px
-		itemsDesktopSmall : [900,1], // betweem 900px and 601px
-		itemsTablet: [600,1], //2 items between 600 and 0
-		transitionStyle : "goDown"
-	});	
-	
-	/*=================================================================
-	Home parallax heading animation
-	===================================================================*/ 
-	if (isMobile == false) {
-		$(window).scroll(function(){
-		var scrollAmount = $(window).scrollTop()/2;
-			$('#slideshow-info').css('padding-top', scrollAmount);	
-		});	
-		$(window).scroll(function(){
-			if($(window).scrollTop()<windowHeight/3){
-				$('#slideshow-info').fadeIn(1400);
-			} else {
-				$('#slideshow-info').fadeOut(1400);
-			}
-		});
-	}
-	
-});
+    // -------------------------------------------------------------
+    // Preloader
+    // -------------------------------------------------------------
+    (function () {
+        $('#status').fadeOut();
+        $('#preloader').delay(200).fadeOut('slow');
+    }());
 
 
-/* ---------------------------------------------
- Services section
- --------------------------------------------- */
-    
-var service_item = $(".service-item");
-var service_descr = service_item.find(".service-descr");
-var service_descr_top;
 
-function init_services(){
-    (function($){
-    
-        $(".service-item").each(function(){
-            $(this).find(".service-descr").prepend($(this).find(".service-intro").html());
-        });
-        
-        // Hover        
-        service_item.click(function(){
-            if ($("html").hasClass("mobile")) {
-                if ($(this).hasClass("js-active")) {
-                    $(this).removeClass("js-active");
-                }
-                else {
-                    $(this).addClass("js-active");
-                }
-            }
-        });
-        
-    })(jQuery);
-}
+    // ------------------------------------------------------------------
+    // sticky menu
+    // ------------------------------------------------------------------
 
-function service_height_init(){
-    (function($){
-    
-        var service_max_height = 0;
-        if ($(window).width() >= 767) {
-            service_item.each(function(index){
-                $(this).css("height", "auto");
-                if ($(this).height() > service_max_height) {
-                    service_max_height = $(this).height();
-                }
-            });
-            
-            if (service_max_height > service_item.width() * 0.9) {
-                service_item.height(service_max_height);
+    (function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 50) {
+                $('.navbar').addClass('sticky-nav');
             }
             else {
-                service_item.height(service_item.width() * 0.9);
+                $('.navbar').removeClass('sticky-nav');
             }
-        }
-        
-        var service_descr_offset;
-        var service_intro_offset;
-        service_descr.each(function(){
-            service_descr_offset = $(this).height() / 2;
-            service_intro_offset = $(this).parent(".si-inner").find(".service-intro").height() / 2;
-            $(this).parent(".si-inner").find(".service-intro").css("top", service_descr_offset + "px");
-            $(this).parent(".si-inner").find(".service-descr").css("top", -service_intro_offset + "px");
-            
         });
-        
-        // Split sections	
-        $(".split-section-content").css("height", "auto");
-        if ($(window).width() > 992) {
-            $(".split-section-content").equalHeights();
+    }());
+
+
+
+    // -------------------------------------------------------------
+    // mobile menu
+    // -------------------------------------------------------------
+    (function () {
+        $('button.navbar-toggle').ucOffCanvasMenu({
+        documentWrapper: '#main-wrapper',
+        contentWrapper : '.content-wrapper',
+        position       : 'uc-offcanvas-left',    // class name
+        // opener         : 'st-menu-open',            // class name
+        effect         : 'slide-along',             // class name
+        closeButton    : '#uc-mobile-menu-close-btn',
+        menuWrapper    : '.uc-mobile-menu',                 // class name below-pusher
+        documentPusher : '.uc-mobile-menu-pusher'
+        });
+    }());
+
+
+    // ------------------------------------------------------------------
+    // Testimonial Slider
+    // ------------------------------------------------------------------
+    (function() {
+        $('.testimonial').owlCarousel({
+            items:2,
+            loop: true,
+            margin: 30,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                768:{
+                    items:2
+                }
+            }
+        });
+
+        $('.logo-slider').owlCarousel({
+            loop: true,
+            margin: 30,
+            responsiveClass:true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                480: {
+                    items: 2
+                },
+                600: {
+                    items: 4
+                },
+                768: {
+                    items: 6
+                }
+            }
+        });
+
+    }());
+
+
+
+    // ------------------------------------------------------------------
+    // jQuery for back to Top
+    // ------------------------------------------------------------------
+    (function(){
+
+        $('body').append('<div id="totop"><i class="fa fa-angle-up"></i></div>');
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() != 0) {
+                    $('#totop').fadeIn();
+                } else {
+                    $('#totop').fadeOut();
+                }
+            }); 
+
+        $('#totop').on('click',function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+
+    }());
+
+
+    // ------------------------------------------------------------------
+    // Search Modal
+    // ------------------------------------------------------------------
+
+    (function () {
+        $('.search-modal,.video-modal').modal({
+            backdrop: false,
+            show:false
+        });
+
+    }());
+
+
+
+    // -------------------------------------------------------------
+    // Google Map
+    // -------------------------------------------------------------
+
+    (function () {
+
+        if ($('#googleMap').length > 0) {
+
+            //set your google maps parameters
+            var $latitude = 51.515812, //If you unable to find latitude and longitude of your address. Please visit http://www.latlong.net/convert-address-to-lat-long.html you can easily generate.
+                $longitude =  -0.132548,
+                $map_zoom = 16; /* ZOOM SETTING */
+
+            //google map custom marker icon
+            var $marker_url = 'img/google-map-marker.png';
+
+            //we define here the style of the map
+            var style = [{
+                "stylers": [{
+                    "hue": "#000"
+                }, {
+                    "saturation": -60
+                }, {
+                    "gamma": 1.15
+                }, {
+                    "lightness": -5
+                }]
+            }];
+
+            //set google map options
+            var map_options = {
+                center: new google.maps.LatLng($latitude, $longitude),
+                zoom: $map_zoom,
+                panControl: false,
+                zoomControl: false,
+                mapTypeControl: false,
+                streetViewControl: false,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                scrollwheel: false,
+                styles: style,
+            }
+            //initialize the map
+            var map = new google.maps.Map(document.getElementById('googleMap'), map_options);
+            //add a custom marker to the map
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng($latitude, $longitude),
+                map: map,
+                visible: true,
+                icon: $marker_url
+            });
         }
-        
-    })(jQuery);
-}
-// Function equal height
-    !function(a){
-        a.fn.equalHeights = function(){
-            var b = 0, c = a(this);
-            return c.each(function(){
-                var c = a(this).innerHeight();
-                c > b && (b = c)
-            }), c.css("height", b)
-        }, a("[data-equal]").each(function(){
-            var b = a(this), c = b.data("equal");
-            b.find(c).equalHeights()
-        })
-    }(jQuery);
-	
-}(jQuery));
+    }());
 
 
+}); // JQuery end
 
-
-
-    
 
 
 
