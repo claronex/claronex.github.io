@@ -292,7 +292,7 @@ ul {
 /* --------------------------
  * BACK TO TOP
  *---------------------------*/
-#totop {
+/*#totop {
     position    : fixed;
     bottom      : 12px;
     right       : 30px;
@@ -320,7 +320,7 @@ ul {
     background-color   : #7bb69d;
 	height: 10px;
     }
-
+*/
 /*-----------------------------
  NAVIGATION & HEADER STYLE
 --------------------------------*/
