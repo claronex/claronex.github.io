@@ -319,8 +319,8 @@ ul {
     color              : #000;
     background-color   : #7bb69d;
 	height: 10px;
-    }
-*/
+    }*/
+
 /*-----------------------------
  NAVIGATION & HEADER STYLE
 --------------------------------*/
@@ -800,7 +800,7 @@ ul {
 
 /*Media Query*/
 
-@media (max-width : 1024px) {
+@media (max-width : 900px) {
     .hero-slide .carousel-caption h1 {
         font-size : 24px;
         margin-top: 10px;
@@ -903,7 +903,7 @@ ul {
  * ------------------------------- */
 
 .section-wrapper {
-    padding : 80px 0;
+    padding : 30px 0;
     }
 
 .section-column-wrapper{
@@ -2521,7 +2521,7 @@ ul.joblist-link li a{
     box-shadow       : none;
     }
 
-@media (min-width : 992px) and (max-width : 1199px) {
+@media (min-width : 900px) and (max-width : 900px) {
     .x-progress .progress {
         width : 60%;
         }
@@ -2723,7 +2723,7 @@ ul.joblist-link li a{
 
 /*media query*/
 
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 768px) and (max-width: 900px) {
     .footer .widget-about .group-col .contact-info,
     .footer .widget-about .group-col .social-links{
         display: block;
@@ -2768,7 +2768,7 @@ ul.joblist-link li a{
     }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     .footer .footer-widget .social-links{
         text-align: left;
         margin-top: 10px;        }
